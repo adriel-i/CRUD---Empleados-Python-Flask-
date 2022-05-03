@@ -1,0 +1,37 @@
+<!-- incluye el header -->
+{% include 'header.html' %}
+
+	<h1>Empleados</h1>
+
+	<table class="table">
+		<thead class="thead-defaultinverse">
+			<tr>
+				<th>ID</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Correo</th>
+				<th>Foto</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- recorro la lista de empleados -->
+			{%for empleado in empleados%}
+			<tr>
+				<td>{{empleado[0]}}</td>
+				<td>{{empleado[1]}}</td>
+				<td>{{empleado[2]}}</td>
+				<td>{{empleado[3]}}</td>
+				<td>
+					<img class="img-thumbnail" width="100" src="uploads/{{empleado[4]}}">
+				</td>
+				<td>
+					<a class="btn btn-warning" href="/edit/{{empleado[0]}}">Editar</a> |
+					<a onclick="return confirm('¿Desea borrar el registro?')" class="btn btn-danger" href="/destroy/{{empleado[0]}}">Eliminar</a>
+				</td>
+			</tr>
+			{%endfor%}
+		</tbody>
+	</table>
+
+{% include 'footer.html' %}

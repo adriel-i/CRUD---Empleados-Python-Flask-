@@ -1,0 +1,44 @@
+{% include 'header.html' %}
+
+	{% for empleado in empleados%}
+
+		<form method="post" action="/update" enctype="multipart/form-data">
+
+			<div style="text-align: center;">
+			<h3 class="card-header">Editar Empleado</h3>
+			</div>
+			
+			<br>
+			<h4 class="card-title">Edite los datos del empleado:</h4>
+
+			<div class="form-group">
+				<input type="hidden" value="{{ empleado[0] }}" name="txtId">
+				<label for="txtNombre">Nombre:</label>
+				<input type="text" value="{{ empleado[1] }}" class="form-control" name="txtNombre" id="txtNombre" placeholder="Nombre">
+			</div>
+			<div class="form-group">
+				<label for="txtApellido">Apellido:</label>
+				<input type="text" value="{{ empleado[2] }}" class="form-control" name="txtApellido" id="txtApellido" placeholder="Apellido">
+			</div>
+			<div class="form-group">
+				<label for="txtCorreo">Email:</label>
+				<input type="text" value="{{ empleado[3] }}" class="form-control" name="txtCorreo" id="txtCorreo" placeholder="Correo">
+			</div>
+			<div class="form-group">
+				<label for="txtFoto">Foto:</label>
+				<!-- en url_for usamos el metodo de app.py  para la foto -->
+				<img src="{{ url_for('uploads', nombreFoto = empleado[4]) }}" class="img-fluid img-thumbnail" width="100" alt="Responsive image">
+				<input type="file" class="form-control" name="txtFoto" id="txtFoto">
+			</div>
+			<div style="text-align: center;">
+				<button type="submit" value="agregar" class="btn btn-primary">Enviar</button>
+			</div>
+			
+		</form>
+
+	{%endfor%}
+
+{% include 'footer.html' %}
+
+
+
